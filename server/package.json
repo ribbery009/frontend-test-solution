@@ -1,0 +1,18 @@
+{
+  "name": "idomsoft-test-server",
+  "description": "Test alkalmazas szerver csomag",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "connect-history-api-fallback": "^1.5.0",
+    "express": "^4.16.2",
+    "path": "^0.12.7",
+    "server-destroy": "^1.0.1"
+  },
+  "devDependencies": {},
+  "author": "Idomsoft Zrt. <hr@idomsoft.hu>",
+  "license": "ISC"
+}

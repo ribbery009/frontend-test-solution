@@ -1,0 +1,38 @@
+@import "vars";
+
+.todo-item {
+
+  &:hover {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -1px;
+      width: 4px;
+      background-color: $secondary;
+    }
+  }
+
+  &-action {
+    display: none;
+    cursor: pointer;
+  }
+
+  &:not(.todoUnion) {
+    overflow: hidden;
+
+    &:hover {
+      .todo-item-time {
+        display: none;
+      }
+
+      .todo-item-action {
+        display: inline-block;
+      }
+    }
+  }
+
+}
+
+

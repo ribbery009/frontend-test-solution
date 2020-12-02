@@ -1,0 +1,23 @@
+{
+  "name": "idomsoft-test",
+  "version": "1.0.0",
+  "description": "IdomSoft teszt feladat",
+  "scripts": {
+    "preinstall": "cd client && npm i && cd ../server && npm i && cd ..",
+    "start": "node server",
+    "build": "cd client && npm run build"
+  },
+  "author": "IdomSoft Zrt. <hr@idomsoft.hu>",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.6",
+    "webpack-cli": "^4.2.0"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "cors": "^2.8.5",
+    "moment": "^2.29.1",
+    "mongoose": "^5.10.15",
+    "react-service-worker": "^0.1.1"
+  }
+}
