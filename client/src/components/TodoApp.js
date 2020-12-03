@@ -7,18 +7,17 @@ import TodoItem from './TodoItem';
 
 
 
-class Hello extends Component {
+class TodoApp extends Component {
 
   state = {
     show: false,
-    todos: [],
-    pull: false,
-    prevStateCount: 0,
+    todosList: [],
     todoslength: 0,
   }
 
 
   FetchData = () => {
+    
     let temp = 0;
     Api.fetchTodos()
       .then(response => {
@@ -30,8 +29,7 @@ class Hello extends Component {
           }
         })
         if (todos) {
-          
-          this.setState({ todos: updatedTodos, todoslength: temp })
+          this.setState({ todosList: updatedTodos, todoslength: temp, needRefresh: false })
         }
       });
   }
@@ -43,54 +41,44 @@ class Hello extends Component {
     else {
       this.setState({ show: true })
     }
-
-
   }
 
-  componentDidMount() {
-    this.FetchData();
-
-  }
-
-  componentDidUpdate() {
-    if (this.state.todos) {
-      if (this.state.prevStateCount !== this.state.todoslength) {
-        this.setState({ prevStateCount: this.state.todoslength })
-      }
-    }
+  componentWillMount() {
+    this.FetchData()
+    console.log("ComponentWillMount")
   }
 
   todoDataHandler = (selectedTodo, selectedDate) => {
- 
     const data = {
       title: selectedTodo,
       completed: false,
       datetime: selectedDate,
     }
     Api.addTodo(data);
+    this.FetchData();
   }
 
   todoDataRemover = (id) => {
- 
-    let item = {id: id}
+    let item = { id: id }
     Api.deleteTodo(item)
     this.FetchData();
   }
 
-  todoDataUpdate = (id,selectedTodo,selectedDate,completed) => {
+  todoDataUpdate = (id, selectedTodo, selectedDate, completed) => {
     const item = {
       title: selectedTodo,
       completed: completed,
       datetime: selectedDate,
-      id:id
+      id: id
     }
     Api.updateTodo(item)
-    this.FetchData();
+    location.reload();
   }
+  
   render() {
-    let updatetedTodos = [];
-    if (this.state.todos) {
-      updatetedTodos = this.state.todos.map((todo, index) => {
+    let updatedTodos = [];
+    if (this.state.todosList) {
+      updatedTodos = this.state.todosList.map((todo, index) => {
         return (
           <TodoItem
             title={todo.title}
@@ -105,45 +93,39 @@ class Hello extends Component {
       });
     }
 
-    if (this.state.todos) {
-      if (this.state.prevStateCount !== this.state.todoslength) {
-        this.FetchData();
-      }
-    }
-
     return (
       <div className="container">
         <div className="row justify-content-center py-5">
           <div className="col-lg-6">
-          <div className="card todos">
-          <div className="card-header bg-white position-relative">
-            
-                <TodoHeader showTodoForm={this.showInput} todos={this.state.todos} opener={this.state.show} />
-</div>
-                {this.state.show ? <Aux>
-                  <NewTodoForm todos={this.state.todos} todoDataHandler={this.todoDataHandler} /></Aux>
+            <div className="card todos">
+              <div className="card-header bg-white position-relative">
 
-                  : 
-                  null
-                }
-                {this.state.todos ?
-                  <div className="list-group">
-                    {updatetedTodos}
-                  </div>
-                  :
-                  <div className="card-body">
-                    <h4 className="text-center">You don't have any todos yet. :(</h4>
-                    <p className="text-center">Click the button above to add some.</p>
-                  </div>}
-
-
-
+                <TodoHeader showTodoForm={this.showInput} todos={this.state.todos} opener={this.state.show} todosCount={this.state.todoslength}/>
               </div>
+              {this.state.show ? <Aux>
+                <NewTodoForm todoDataHandler={this.todoDataHandler} /></Aux>
+
+                :
+                null
+              }
+              {this.state.todoslength > 0 ?
+                <div className="list-group">
+                  {updatedTodos}
+                </div>
+                :
+                <div className="card-body">
+                  <h4 className="text-center">You don't have any todos yet. :(</h4>
+                  <p className="text-center">Click the button above to add some.</p>
+                </div>}
+
+
+
             </div>
           </div>
         </div>
+      </div>
     )
 
   }
 }
-export default Hello;
+export default TodoApp;

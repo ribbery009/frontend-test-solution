@@ -26,7 +26,6 @@ class Todoreturn extends Component {
 
 
   componentWillMount(){
-    
   this.setState({selectedTodo: this.props.title})
   this.setState({checked: this.props.completed})
   this.setState({selectedDate: this.props.date})
@@ -79,7 +78,7 @@ class Todoreturn extends Component {
       <div className="row h-input align-items-center">
         <div className="align-items-center">
 
-          <div className="col-1 col-sm-1">
+          <div className="col-1 col-sm-1 col-lg-2">
             {this.props.completed ? <Checkbox
             
               checked={this.state.checked}
@@ -96,7 +95,7 @@ class Todoreturn extends Component {
           </div>
         </div>
 
-        <div className="form-group col-4 col-lg-6 col-md-6 col-sm-3">
+        <div className="col-4 col-lg-7 col-md-6 col-sm-3">
           <span className="font-weight-normal align-items-center">
             {this.state.checked ?
               <strike style={{ color: '#e0e0e0' }}>
@@ -107,7 +106,7 @@ class Todoreturn extends Component {
           </span>
         </div>
 
-        <div className="col-md-4 col-sm-6 col-lg-3 d-flex align-items-center justify-content-end col-3">
+        <div className="col-md-4 col-sm-6 col-lg-3 d-flex align-items-center justify-content-end col-3 timeFormatted">
           {this.state.checked ? 
           <span style={{ color: '#e0e0e0'}}><small className="align-items-center">
             {formattedDate}
@@ -125,18 +124,16 @@ class Todoreturn extends Component {
 
     const TodoEdit = (<div className="list-group-item todo-item">
       <div className="row h-input align-items-center">
-        <div className="align-items-center">
+       
 
           <div className="col-1 col-sm-1">
-            <Icon color="secondary" fontSize="small" onClick={this.clickevent}>cancel
+            <Icon color="secondary" fontSize="small"  onClick={this.clickevent}>cancel
   </Icon>
-
-          </div>
         </div>
-        <div className={" mt-1 align-items-start col-1 col-sm-1 col-md-1"}>
+        <div className={"align-items-start col-1 col-sm-1 col-md-1"}>
           <Icon color="primary" fontSize="small" onClick={this.clickeventSave}>save</Icon>
         </div>
-        <div className="form-group col-4 col-lg-6 col-md-6 col-sm-4">
+        <div className="col-4 col-lg-6 col-md-6 col-sm-4 mb-1">
           <input type="text" className="form-control" id="todoInput" placeholder="NewToDo" value={this.state.selectedTodo} onChange={this.handleChange} />
         </div>
 

@@ -70,3 +70,14 @@
     border-radius: 0;
   }
 }
+
+@media (min-width: 990px) {
+  .timeFormatted {
+    right: 20px;
+  }
+
+  .added{
+    height: 25px;
+    width: 40px;
+  }
+}

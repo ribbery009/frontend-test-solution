@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
-import SendIcon from '@material-ui/icons/Send';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
 
 
 class newTodo extends Component {
@@ -10,14 +10,8 @@ class newTodo extends Component {
     this.state = {
       selectedDate: new Date(),
       selectedTodo: '',
-      selectedId: '',
-      todos: []
     }
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({ todos: this.props.todos, selectedId: this.props.id })
   }
 
   handleChange(event) {
@@ -32,7 +26,6 @@ class newTodo extends Component {
       </MuiPickersUtilsProvider>
     )
     return (
-
       <div className="d-flex justify-content-around">
         <form className="form-inline">
           <div className="p-2">
@@ -44,7 +37,7 @@ class newTodo extends Component {
           <div className="p-2">
             <button type="submit" className="btn btn btn-outline-secondary rounded-circle 
 " onClick={() => this.props.todoDataHandler(this.state.selectedTodo, this.state.selectedDate)}>
-             <SendIcon/>
+             <SaveAltIcon />
               </button>     
           </div>
         </form>

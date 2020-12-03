@@ -51,7 +51,7 @@ const TodosHeader = (props) => {
                 </div>
   <div className="justify-content-flex-end d-flex  justify-content-sm-end pt-1 col-sm-6 col-md-3 row col-2">
   <div className="text-muted">
-                    {props.todos ?  <strong>{props.todos.length}</strong> :  <strong>0</strong>} Tasks
+                    {props.todosCount ?  <strong>{props.todosCount}</strong> :  <strong>0</strong>} Tasks
                  </div>
                   </div>
                   </div>
